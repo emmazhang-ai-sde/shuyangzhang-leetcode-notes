@@ -1,0 +1,8 @@
+.venv/
+backend/__pycache__/
+backend/leetcode.db
+backend/leetcode.db.bak-*
+backend/note_images/
+backend/render-restore-backups/
+.DS_Store
+leetcode/4-leetcode-fill-in/node_modules/
