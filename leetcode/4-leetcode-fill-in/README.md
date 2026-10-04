@@ -27,7 +27,7 @@ Styles are split so **global tokens**, **app chrome**, **courseware body**, and 
 | **`courseware-embed.css`** | **Index only**: wrapper around embedded notes — `.chapter-notes-panel`, `.notes-iframe`, `[hidden]` |
 | **`courseware.css`** | **Courseware pages** (including inside iframes): notes layout, TOC, sections, template cards, syntax-colored blocks, LeetCode link rows, optional `notes-standalone-wrap` / `notes-courseware-page` width |
 | **`fill-exercise.css`** | **Fill UI**: `.prob-panel`, code table (`.code-table`), blanks (`.blank`), indicators, controls, score, copy toast |
-| **`repo-corner.css`** | Top-right “Answers” / “本题 .py” corner links (also used by [`repo-corner.js`](assets/repo-corner.js)) |
+| **`repo-corner.css`** | Top-right “Answers” / “This problem .py” corner links (also used by [`repo-corner.js`](assets/repo-corner.js)) |
 
 ### Import barrels
 
@@ -57,7 +57,7 @@ Scripts are split by **shared fill engine**, **shell layout**, **fill-specific i
 | **`ch09-problems-desc.js`** | Generated `window.CH09_PROBLEM_DESC` — LeetCode problem statements (HTML) keyed by problem number, shown in the `#probDesc` block above the code table. Regenerate (plus `chapters/ch09/ch09-problems-md/*.md`) with `python3 scripts/fetch-ch09-problems.py` |
 | **`app-shell-layout.js`** | `window.AppShellLayout.syncNavFromTitle` — measures sidebar title width and keeps layout stable on resize/fonts |
 | **`fill-exercise-index.js`** | `window.FillExerciseIndex` — Chapter 1 problem list, tab building, render problem, hash parse/set, toolbar buttons, Ch2 tree template fill mode |
-| **`courseware-index.js`** | `window.CoursewareIndex` — show/hide courseware iframes vs fill panel; wires “Chapter N — 课件” nav buttons |
+| **`courseware-index.js`** | `window.CoursewareIndex` — show/hide courseware iframes vs fill panel; wires “Chapter N — Courseware” nav buttons |
 | **`index-app.js`** | Entry: reads hash, calls `FillExerciseIndex` / `CoursewareIndex` to show the right view |
 | **`fill-core.js`** | Used on standalone problem pages (with `fill-blanks.js`) for DOMContentLoaded wiring |
 | **`repo-corner.js`** | Injects/updates the top-right corner links: `/answers/` (local standard-answers + user-answers listing) and `/answers/<num>` (this problem's answer file, plain text) — served by `backend/main.py` |
@@ -94,7 +94,7 @@ Scripts are split by **shared fill engine**, **shell layout**, **fill-specific i
 
   See [`chapters/ch02/STRUCTURE.txt`](chapters/ch02/STRUCTURE.txt) for naming and workflow notes.
 
-- **Deep links** on the main app include `#p-<题号>`, `#notes-ch1`, `#notes-ch2`, `#notes-ch7`, and `#ch2-tree-py` (Chapter 2 tree template mode).
+- **Deep links** on the main app include `#p-<problem-number>`, `#notes-ch1`, `#notes-ch2`, `#notes-ch7`, and `#ch2-tree-py` (Chapter 2 tree template mode).
 
 ---
 
