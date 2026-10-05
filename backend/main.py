@@ -183,6 +183,11 @@ def lc_question_notes(name: str):
     return data
 
 
+@app.get("/api/leetcode/mock-script-status")
+def lc_mock_script_status():
+    return db.get_lc_mock_script_statuses()
+
+
 @app.put("/api/leetcode/notes/card")
 def lc_put_note_card(payload: dict):
     if not payload.get("id") or not payload.get("name"):

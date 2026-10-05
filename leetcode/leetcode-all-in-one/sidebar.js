@@ -27,7 +27,7 @@
       z-index: 100;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-    /* 顶上三行入口的 sticky 壳：.sidebar 的 24px 顶部内边距搬到这里
+    /* 顶上入口的 sticky 壳：.sidebar 的 24px 顶部内边距搬到这里
        （sticky 元素钉不进容器的 padding 区，留在外面会露一条缝）；
        横向负 margin 撑满整条侧栏，底边一条淡线区分。 */
     .sidebar-head {
@@ -49,7 +49,7 @@
     }
     .sb-collapse-btn {
       border: none; background: transparent; color: #aaa; cursor: pointer;
-      font-size: 20px; line-height: 1; padding: 6px 11px; border-radius: 8px; flex: none;
+      font-size: 19.5px; line-height: 1; padding: 6px 11px; border-radius: 8px; flex: none;
       margin-left: auto;
     }
     .sb-collapse-btn:hover { background: #f0f0f0; color: var(--ink-soft); }
@@ -63,7 +63,7 @@
     }
     .sb-view-switch button {
       border: none; background: #fff; color: var(--ink);
-      font: 700 11.5px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font: 700 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       padding: 4px 9px; border-radius: 5px; cursor: pointer; white-space: nowrap;
     }
     .sb-view-switch button.on { background: var(--ink); color: var(--ink-hl); }
@@ -80,7 +80,7 @@
       background: #fff;
       box-shadow: var(--ink-shadow-sm);
       color: var(--ink);
-      font: 700 12px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font: 700 11.5px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       line-height: 1.2;
       padding: 7px 10px;
       outline: none;
@@ -114,7 +114,7 @@
     .sidebar-search-result:focus { background: var(--ink-hl); outline: none; }
     .sidebar-search-result-main {
       display: block;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 800;
       line-height: 1.25;
     }
@@ -122,7 +122,7 @@
       display: block;
       margin-top: 2px;
       font-family: var(--ink-mono);
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 700;
       color: var(--ink-muted);
       line-height: 1.25;
@@ -133,7 +133,7 @@
     .sidebar-search-empty {
       padding: 8px;
       color: var(--ink-muted);
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
     }
     /* Check-in 汇总页（Life OS 集成）：顶部纯文字入口——不带卡片框，
@@ -141,8 +141,8 @@
        （原来的 "LeetCode Animation" 标题链接 2026-08-14 随 index.html 一起删了） */
     .sidebar-checkin, .sidebar-class, .sidebar-algo {
       display: inline-block;
-      margin: 0; padding: 8px 12px;
-      font-size: 14px; font-weight: 800; color: var(--ink);
+      margin: 0; padding: 6px 9px;
+      font-size: 13px; font-weight: 800; color: var(--ink);
       text-decoration: none; white-space: nowrap;
       border-radius: 6px;
     }
@@ -154,8 +154,8 @@
     .sidebar-algo-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin: -4px 0 12px;
+      gap: 7px;
+      margin: -3px 0 9px;
       padding: 0 6px;
       flex-wrap: wrap;
     }
@@ -176,7 +176,7 @@
       justify-content: space-between;
       gap: 8px;
       min-width: 0;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 800;
       margin: 0;
       padding: 9px 12px;
@@ -194,7 +194,7 @@
     .sidebar-tab-link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
     .sidebar-tab-count {
       font-family: var(--ink-mono);
-      font-size: 11px; font-weight: 700; color: var(--ink);
+      font-size: 10.5px; font-weight: 700; color: var(--ink);
       flex: none;
     }
     .sidebar-tab:hover { background: var(--ink-panel); }
@@ -219,7 +219,7 @@
     /* all 模式（2026-09-02）：三个视角的卡摞在一起，每块前面一行小标签分隔
        （Lyon's Chapters / OA / TikTok 高频） */
     .sidebar-block-label {
-      font-family: var(--ink-mono); font-size: 10.5px; font-weight: 800;
+      font-family: var(--ink-mono); font-size: 10px; font-weight: 800;
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted);
       margin: 18px 0 8px; padding: 0 6px;
     }
@@ -235,7 +235,7 @@
     }
     .sidebar-section-title {
       font-family: var(--ink-mono);
-      font-size: 12px; font-weight: 800; color: var(--ink);
+      font-size: 11.5px; font-weight: 800; color: var(--ink);
       margin: 10px 0 4px; padding: 0 4px;
       text-transform: uppercase; letter-spacing: 0.06em;
     }
@@ -243,7 +243,7 @@
       margin: -1px 0 5px;
       padding: 0 4px;
       color: #8f8f8f;
-      font-size: 11px;
+      font-size: 10.5px;
       line-height: 1.4;
       /* 一行到底不折行（2026-08-29 用户要求）；宽度由 updateSidebarWidth 一起量进去 */
       white-space: nowrap;
@@ -252,7 +252,7 @@
       display: flex; align-items: baseline; gap: 7px;
       padding: 4px 6px 4px 0; border-radius: 6px;
       text-decoration: none; color: var(--ink);
-      font-size: 14px; line-height: 1.4;
+      font-size: 13.5px; line-height: 1.4;
       white-space: nowrap;
       width: max-content;
       min-width: 100%;
@@ -268,12 +268,6 @@
       gap: 6px;
       min-width: 0;
       flex: none;
-    }
-    html.lcn-laptop .sidebar-name {
-      flex: 0 1 var(--sidebar-name-max, 28ch);
-      max-width: var(--sidebar-name-max, 28ch);
-      white-space: normal;
-      overflow-wrap: anywhere;
     }
     .sidebar-measure {
       position: absolute;
@@ -304,17 +298,15 @@
     .sidebar-sec-link.active { background: var(--ink-hl); }
     .sidebar-num {
       font-family: var(--ink-mono);
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--ink-faint);
       flex: 0 0 40px;
       text-align: right;
     }
     .sidebar-item.active .sidebar-num { color: var(--ink); }
-    /* 行首固定宽的一格：有动画放 🎬，没有就空着占位，后面的题号列才能对齐 */
-    .sidebar-anim-badge { flex: 0 0 14px; font-size: 12px; line-height: 1; opacity: 0.85; text-align: center; }
     /* 题名后的小勾（chapters 模式）：这题已收进 BFS / DFS All-in-One。 */
     .sidebar-check {
-      font-size: 12px; font-weight: 800; line-height: 1;
+      font-size: 11.5px; font-weight: 800; line-height: 1;
       color: #2f9e63;
       flex: none;
       white-space: nowrap;
@@ -326,32 +318,69 @@
       margin-left: auto;
       padding-left: 16px;
       font-family: var(--ink-mono);
-      font-size: 11px; font-weight: 700;
+      font-size: 10.5px; font-weight: 700;
       color: var(--ink-muted);
       flex: none;
       white-space: nowrap;
     }
-    /* 行末打卡徽章（2026-08-21）：这题最近一次打卡的「月/日 · 分数」，
-       mono 淡灰小字，没打过卡的题什么都不显示。margin-left:auto 顶到行
-       最右；前面已有 ✓ / Ch n（它们自己带 auto）时退回普通间距——两个
-       auto 会把空隙对半分，行末就散了 */
+    .sidebar-trail {
+      margin-left: 0;
+      padding-left: 0;
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: flex-start;
+      gap: 8px;
+      flex: none;
+      white-space: nowrap;
+    }
+    /* 打卡徽章：这题最近一次打卡的「月/日 · 分数」。放在题号前，
+       固定宽度保证题名列对齐；没记录时用 invisible 占位。 */
     .sidebar-done {
-      margin-left: auto;
-      padding-left: 12px;
       font-family: var(--ink-mono);
-      font-size: 11.5px;
+      font-size: 11px;
       color: var(--ink-muted);
       font-variant-numeric: tabular-nums;
+      display: inline-grid;
+      grid-template-columns: 5ch 1ch 3ch;
+      column-gap: 0.35ch;
+      align-items: baseline;
       flex: none;
+      width: 10ch;
       white-space: nowrap;
     }
-    /* 分数固定 3 字符宽（"3.5" 最长），整个徽章右对齐时「·」才能上下对齐 */
-    .sidebar-done-score { display: inline-block; width: 3ch; text-align: left; }
-    .sidebar-chap + .sidebar-done { margin-left: 0; }
+    .sidebar-done-empty { visibility: hidden; }
+    .sidebar-done-date { text-align: right; }
+    .sidebar-done-dot { text-align: center; }
+    .sidebar-done-score { text-align: left; }
     .sidebar-item.active .sidebar-done { color: rgba(17,17,17,0.65); }
+    .sidebar-mock-status {
+      display: inline-flex;
+      gap: 4px;
+      flex: none;
+      justify-content: flex-start;
+      width: auto;
+    }
+    .sidebar-mock-status-empty { visibility: hidden; }
+    .sidebar-mock-slot {
+      font-family: var(--ink-mono);
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+      min-width: 14px;
+      padding: 1px 4px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .sidebar-mock-slot.progress {
+      background: rgba(245, 161, 72, 0.32);
+    }
+    .sidebar-mock-slot.done {
+      background: rgba(55, 180, 112, 0.34);
+    }
     .algo-tag {
       font-family: var(--ink-mono);
-      font-size: 10px; font-weight: 800;
+      font-size: 9.5px; font-weight: 800;
       padding: 1px 5px; border-radius: 4px;
       letter-spacing: 0.02em;
       flex: none;
@@ -379,7 +408,7 @@
 
   // ── 数据：全部来自 catalog.js（每页在本脚本之前加载）────────────────────
   // catalog 只存事实（num/name/slug/anim/page），这里派生渲染字段：有 anim
-  // 用动画页（带 🎬），有 page 用图文页（不带 🎬），都没有指到 placeholder
+  // 用动画页，有 page 用图文页，都没有指到 placeholder
   // （pending 标记也由此而来，不再手写）。
   // 兜底空目录：万一某页漏挂 catalog.js，侧栏空着但页面不炸。
   const CATALOG = window.LC_CATALOG ||
@@ -392,11 +421,11 @@
       file: p.anim || p.page || placeholderFile(p.num, p.pageName || p.name, p.slug),
       name: p.name,
     };
-    if (p.anim) entry.hasAnim = true;
     if (!p.anim && !p.page) entry.pending = true;
     // algo：题目实际用的算法（BFS / DFS / BFS+DFS / Union-Find…），照 Lyon
     // 答案标注，纯展示用，不参与任何逻辑；没标的题不显示这个 tag
     if (p.algo) entry.algo = p.algo;
+    entry.noteName = p.num != null ? `${p.num}. ${p.name}` : (p.pageName || p.name);
     // solAuthor：Solution 卡第一个 tab 的作者名（notes.js 用），默认 Lyon
     if (p.solAuthor) entry.solAuthor = p.solAuthor;
     // tiktok：TikTok 高频题标记（catalog 原样带过来），侧栏 'tiktok' 模式按它过滤
@@ -491,16 +520,105 @@
   // 静默消失。key：有题号用题号对（打卡记录的 name 是"378. …"格式），没题号
   // 的（OA 题等）用小写题名对。
   const CHECKIN_LAST = Object.create(null);
+  const MOCK_STATUS = Object.create(null);
+  const MOCK_STATUS_PREFIX = 'mock-status:';
+  const MOCK_SECTION_INDEX = {
+    clarify: 1,
+    'high-level-idea': 2,
+    write: 3,
+    'complexity-overview': 4,
+    'time-complexity': 4,
+    'space-complexity': 4,
+    'test-cases': 5,
+  };
+  let checkinsLoaded = false;
+  let mockStatusLoaded = false;
+  const MOCK_STATUS_SLOT_COUNT = 5;
   function checkinKey(num, name) {
     return num != null ? String(num)
       : 'n:' + String(name || '').trim().toLowerCase();
   }
-  function checkinBadgeHtml(ck) {
+  function noteKeyToCheckinKey(noteName) {
+    const m = /^(\d+)\.\s*/.exec(String(noteName || ''));
+    return m ? String(+m[1]) : checkinKey(null, noteName);
+  }
+  function mockStatusValue(category) {
+    if (category === MOCK_STATUS_PREFIX + 'done' || category === 'done') return 'done';
+    if (category === MOCK_STATUS_PREFIX + 'progress' || category === 'progress' || category === 'in-progress') return 'progress';
+    return '';
+  }
+  function mockStatusIndex(row) {
+    const id = String(row && row.id || '');
+    for (const key of Object.keys(MOCK_SECTION_INDEX)) {
+      if (id.endsWith(':' + key)) return MOCK_SECTION_INDEX[key];
+    }
+    const title = String(row && row.title || '');
+    const m = /^([1-5])(?:\.\d+)?\./.exec(title);
+    if (m) return Math.min(Number(m[1]), MOCK_STATUS_SLOT_COUNT);
+    return 0;
+  }
+  function setMockStatusSlot(row, allowClear) {
+    const status = mockStatusValue(row && row.category || '');
+    const name = String(row && row.name || '');
+    if (!name.startsWith('mock-script:')) return false;
+    const noteName = name.slice('mock-script:'.length);
+    const ck = noteKeyToCheckinKey(noteName);
+    const idx = mockStatusIndex(row);
+    if (!idx || idx > MOCK_STATUS_SLOT_COUNT) return false;
+    if (!MOCK_STATUS[ck]) MOCK_STATUS[ck] = {};
+    if (!status) {
+      if (allowClear) delete MOCK_STATUS[ck][idx];
+      return true;
+    }
+    if (status === 'progress' || !MOCK_STATUS[ck][idx] || allowClear) {
+      MOCK_STATUS[ck][idx] = status;
+    }
+    return true;
+  }
+  function checkinBadgeHtml(ck, reserve) {
     const rec = CHECKIN_LAST[ck];
-    if (!rec) return '';
+    const emptyBadge = '<span class="sidebar-done sidebar-done-empty"><span class="sidebar-done-date">00/00</span><span class="sidebar-done-dot">·</span><span class="sidebar-done-score">0</span></span>';
+    if (!rec) return reserve ? emptyBadge : '';
     const m = /^\d{4}-(\d{2})-(\d{2})/.exec(String(rec.ts));
-    if (!m) return '';
-    return `<span class="sidebar-done">${+m[1]}/${+m[2]} · <span class="sidebar-done-score">${rec.score}</span></span>`;
+    if (!m) return reserve ? emptyBadge : '';
+    return `<span class="sidebar-done"><span class="sidebar-done-date">${+m[1]}/${+m[2]}</span><span class="sidebar-done-dot">·</span><span class="sidebar-done-score">${rec.score}</span></span>`;
+  }
+  function mockStatusHtml(ck, reserve) {
+    if (!mockStatusLoaded) return '';
+    const statuses = MOCK_STATUS[ck] || {};
+    const slots = [];
+    for (let i = 1; i <= MOCK_STATUS_SLOT_COUNT; i++) {
+      const status = statuses[i];
+      if (!status) continue;
+      slots.push(`<span class="sidebar-mock-slot ${status}" title="Mock script ${i}: ${status}">${i}</span>`);
+    }
+    if (!slots.length) {
+      return reserve ? '<span class="sidebar-mock-status sidebar-mock-status-empty" aria-hidden="true"></span>' : '';
+    }
+    return `<span class="sidebar-mock-status">${slots.join('')}</span>`;
+  }
+  function sidebarCheckinHtml(ck) {
+    const hasCheckin = !!CHECKIN_LAST[ck];
+    const reserve = checkinsLoaded || hasCheckin;
+    const checkin = checkinBadgeHtml(ck, reserve);
+    if (!checkin) {
+      if (!reserve) return '';
+      return '<span class="sidebar-trail sidebar-trail-empty" aria-hidden="true"></span>';
+    }
+    return `<span class="sidebar-trail">${checkin}</span>`;
+  }
+  function refreshSidebarTrails() {
+    nav.querySelectorAll('.sidebar-item[data-ck]').forEach(a => {
+      const old = a.querySelector('.sidebar-trail');
+      if (old) old.remove();
+      const oldMock = a.querySelector('.sidebar-main > .sidebar-mock-status');
+      if (oldMock) oldMock.remove();
+      const checkinHtml = sidebarCheckinHtml(a.dataset.ck);
+      if (checkinHtml) a.insertAdjacentHTML('afterbegin', checkinHtml);
+      const mockHtml = mockStatusHtml(a.dataset.ck, false);
+      const name = a.querySelector('.sidebar-name');
+      if (mockHtml && name) name.insertAdjacentHTML('afterend', mockHtml);
+    });
   }
 
   const ALGO_TAG_CLS = { BFS: 'bfs', DFS: 'dfs', 'Union-Find': 'uf', 'Monotonic Deque': 'deque' };
@@ -514,15 +632,13 @@
 
   function renderProblemItem(p) {
     const external = /^https?:\/\//.test(p.file);
-    const ck = checkinKey(p.num, p.name);
+    const ck = checkinKey(p.num, p.noteName || p.name);
     const ckAttr = ck.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
     return `<a class="sidebar-item${p.pending ? ' pending' : ''}" data-ck="${ckAttr}" href="${p.file}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>` +
-      // 🎬 放行首、题号前面（2026-08-27 用户要求）：有真动画（catalog 的
-      // anim 字段）的题显示，page 图文页（OA 题解等）和 placeholder 壳页
-      // 留一个同宽的空槽，题号/题名起点对齐
-      (p.hasAnim ? `<span class="sidebar-anim-badge" title="有动画">🎬</span>` : `<span class="sidebar-anim-badge"></span>`) +
+      sidebarCheckinHtml(ck) +
       (p.num ? `<span class="sidebar-num">${p.num}.</span>` : '') +
       `<span class="sidebar-main"><span class="sidebar-name">${p.name}</span>` +
+        mockStatusHtml(ck, false) +
         algoTagsHtml(p.algo) +
         // chapters 模式的题名后小勾：这题已收进 BFS / DFS 算法目录（三个
         // all-in-one 页面）。bfs / dfs 模式的侧栏本来就全是目录里的题，不打
@@ -531,9 +647,6 @@
       `</span>` +
       // OA 模式的章节标注（deriveOaGroups 只给"完美对应" 1–9 章的题挂 chap）
       (p.chap ? `<span class="sidebar-chap">Ch ${p.chap}</span>` : '') +
-      // 打卡徽章永远排最后（初始渲染时 CHECKIN_LAST 还是空的，返回 ''；
-      // updateSidebarWidth 的量宽走的也是这个函数，取到数据后重量就带上它）
-      checkinBadgeHtml(ck) +
     `</a>`;
   }
 
@@ -706,7 +819,6 @@
           num: null,
           name: p.pageName || m[1],
           file: p.anim || p.page || placeholderFile(null, p.pageName || m[1], p.slug),
-          ...(p.anim ? { hasAnim: true } : {}),
           ...(chap ? { chap } : {}),
         });
       })));
@@ -806,8 +918,6 @@
       `<a class="sidebar-algo" href="bfs-dfs-all-in-one.html">BFS / DFS All-in-One</a>` +
       `<a class="sidebar-algo" href="bfs-all-in-one.html">BFS</a>` +
       `<a class="sidebar-algo" href="dfs-all-in-one.html">DFS</a>` +
-    `</div>` +
-    `<div class="sidebar-algo-row">` +
       // 三个视角摞一起看（2026-09-02）：侧栏 'all' 模式
       `<a class="sidebar-algo" href="all-in-one.html">All-in-One</a>` +
       `<a class="sidebar-algo" href="class.html">Lyon</a>` +
@@ -991,10 +1101,14 @@
     sidebarContentWidth = Math.max(sidebarContentWidth, Math.ceil(maxItemWidth + horizontalPadding));
     nav.style.width = `${sidebarContentWidth}px`;
   }
-  function updateContentMargin() {
+  function updateContentMargin(resetWidth) {
+    if (resetWidth) {
+      sidebarContentWidth = 0;
+      nav.style.width = '';
+    }
     updateSidebarWidth();
     // Reading offsetWidth forces a synchronous reflow and captures the sidebar's current chapter-title-based width.
-    marginStyle.textContent = `.content-wrapper { margin-left: ${nav.offsetWidth}px !important; padding-right: 100px !important; }`;
+    marginStyle.textContent = `.content-wrapper { margin-left: ${nav.offsetWidth}px !important; padding-right: 48px !important; }`;
   }
 
   function getOpenSidebarGroups() {
@@ -1097,15 +1211,36 @@
           CHECKIN_LAST[key] = { ts: r.ts, score: r.score };
         }
       });
-      nav.querySelectorAll('.sidebar-item[data-ck]').forEach(a => {
-        const html = checkinBadgeHtml(a.dataset.ck);
-        if (html) a.insertAdjacentHTML('beforeend', html);
-      });
-      // 徽章加宽了最宽的行，重量一次侧栏宽度（量宽用 renderProblemItem，
-      // 此时 CHECKIN_LAST 已就位，量出来的宽自带徽章）
-      updateContentMargin();
+      checkinsLoaded = true;
+      refreshSidebarTrails();
+      // 徽章加宽了最宽的行，重量一次侧栏宽度（量宽用 renderProblemItem，此时
+      // CHECKIN_LAST 已就位，量出来的宽自带徽章）
+      updateContentMargin(true);
     })
     .catch(() => { /* 后端不在（file:// 打开等）：不显示徽章，列表照常 */ });
+
+  fetch('/api/leetcode/mock-script-status')
+    .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then(rows => {
+      (rows || []).forEach(row => {
+        setMockStatusSlot(row, false);
+      });
+      mockStatusLoaded = true;
+      refreshSidebarTrails();
+      updateContentMargin(true);
+    })
+    .catch(() => { /* 后端不在：Mock Script 状态槽不显示，侧栏照常 */ });
+
+  function handleMockStatusChange(detail) {
+    mockStatusLoaded = true;
+    if (!setMockStatusSlot(detail || {}, true)) return;
+    refreshSidebarTrails();
+    updateContentMargin(true);
+  }
+  window.LCN_HANDLE_MOCK_STATUS_CHANGE = handleMockStatusChange;
+  window.addEventListener('lcn:mock-script-status-change', event => {
+    handleMockStatusChange(event.detail || {});
+  });
 
   // ── Sidebar 收起/展开（想让 Notes / 动画全屏时用；状态记 localStorage）──
   // 收起后左上角浮一个小 tab：显示当前页属于哪个 chapter / 哪个分类，
@@ -1151,14 +1286,14 @@
     }
     .sb-loc-tab:hover { background: var(--ink-hl); }
     .sb-loc-tab:active { transform: translate(2px, 2px); box-shadow: var(--ink-shadow-xs); }
-    .sb-loc-ch { font-size: 12.5px; font-weight: 800; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .sb-loc-sec { font-size: 11px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sb-loc-ch { font-size: 12px; font-weight: 800; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sb-loc-sec { font-size: 10.5px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sb-loc-hint {
-      font-family: var(--ink-mono); font-size: 9.5px;
+      font-family: var(--ink-mono); font-size: 9px;
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin-top: 3px;
       text-align: right;
     }
-    .sb-loc-only { font-size: 12.5px; font-weight: 800; color: var(--ink); text-align: center; white-space: nowrap; padding: 2px 4px; }
+    .sb-loc-only { font-size: 12px; font-weight: 800; color: var(--ink); text-align: center; white-space: nowrap; padding: 2px 4px; }
   `;
   document.head.appendChild(sbExtraStyle);
 
@@ -1191,7 +1326,7 @@
     nav.style.display = collapsed ? 'none' : '';
     locTab.style.display = collapsed ? '' : 'none';
     if (collapsed) {
-      marginStyle.textContent = `.content-wrapper { margin-left: 24px !important; padding-right: 100px !important; }`;
+      marginStyle.textContent = `.content-wrapper { margin-left: 24px !important; padding-right: 48px !important; }`;
     } else {
       updateContentMargin();
     }

@@ -280,6 +280,48 @@
     "</div>";
   function mockScriptCardId(name) { return "mock-script:" + name; }
   function mockScriptSectionId(name, key) { return mockScriptCardId(name) + ":" + key; }
+  var MOCK_STATUS_PREFIX = "mock-status:";
+  var MOCK_STATUS_OPTIONS = [
+    { k: "", label: "not started" },
+    { k: "progress", label: "in progress" },
+    { k: "done", label: "done" }
+  ];
+  function mockStatusValue(category) {
+    if (category === MOCK_STATUS_PREFIX + "done" || category === "done") return "done";
+    if (category === MOCK_STATUS_PREFIX + "progress" || category === "progress" || category === "in-progress") return "progress";
+    return "";
+  }
+  function mockStatusCategory(status) {
+    return status ? MOCK_STATUS_PREFIX + status : "";
+  }
+  function emitMockStatusChange(card, name, category, title) {
+    var detail = {
+      id: card.id,
+      name: name,
+      category: category || "",
+      title: title || ""
+    };
+    if (typeof window.LCN_HANDLE_MOCK_STATUS_CHANGE === "function") {
+      window.LCN_HANDLE_MOCK_STATUS_CHANGE(detail);
+      return;
+    }
+    var event;
+    if (typeof window.CustomEvent === "function") {
+      event = new window.CustomEvent("lcn:mock-script-status-change", { detail: detail });
+    } else if (document.createEvent) {
+      event = document.createEvent("CustomEvent");
+      event.initCustomEvent("lcn:mock-script-status-change", false, false, detail);
+    }
+    if (event) window.dispatchEvent(event);
+  }
+  function mockStatusPickerHtml(category) {
+    var cur = mockStatusValue(category);
+    return '<div class="lcn-mock-status-pick" title="Mock script status">' +
+      MOCK_STATUS_OPTIONS.map(function (s) {
+        return '<button type="button" class="lcn-mock-status-btn lcn-mock-status-' + (s.k || "empty") +
+          (cur === s.k ? " sel" : "") + '" data-mock-status="' + s.k + '">' + s.label + "</button>";
+      }).join("") + "</div>";
+  }
   /* 打分标准（跟 Practice 页 LCK_RUBRIC 同一套文案，含 3.5 半档）：
      选中分数后，在 Check in 表单里显示对应说明 */
   var RUBRIC = [
@@ -1816,6 +1858,11 @@
       b.remove();
     });
     d.querySelectorAll("style,link,svg").forEach(function (n) { n.remove(); });
+    d.querySelectorAll("h1,h2,h3,h4,h5,h6").forEach(function (heading) {
+      var div = document.createElement("div");
+      while (heading.firstChild) div.appendChild(heading.firstChild);
+      heading.parentNode.replaceChild(div, heading);
+    });
     // Claude.ai 折叠条旁边还藏着一个同文案 "Thought for 24s" 的 span（靠
     // opacity:0 隐身的占位），style 清掉后就露出来了——按文案删
     d.querySelectorAll("span,div,p").forEach(function (n) {
@@ -2094,20 +2141,12 @@
           }
         }
       }
-      // 表格粘贴：HTML 整表 / Markdown 管道表（见 cleanPastedHtml 上方注释）——只在正文笔记里识别
-      var html = e.clipboardData ? e.clipboardData.getData("text/html") : "";
+      // 外部粘贴统一按纯文本进入，避免网页/聊天软件带进标题、粗体、
+      // 列表、字号等 HTML 结构。站内复制的 note/script block 已在上面
+      // 通过 normalizeInternalNoteHtml 保留结构。
       var ins = null;
-      if (opt.rich && html && /<table[\s>]/i.test(html)) {
-        ins = cleanPastedHtml(html);
-      } else if (html) {
-        ins = normalizePastedStyle(html);
-      } else {
-        // 纯文本粘贴（剪贴板没有 text/html）：不带任何格式，原样插入即可自动继承
-        // 容器自己的字体/字号——不再包一层写死字号的 <span>（那是遗留 bug，
-        // 字号跟正文对不上，等于粘贴内容"字号不固定"的反面案例）。
-        var text = e.clipboardData ? e.clipboardData.getData("text/plain") : "";
-        if (text) ins = (opt.rich && mdTableToHtml(text)) || esc(text).replace(/\n/g, "<br>");
-      }
+      var text = e.clipboardData ? e.clipboardData.getData("text/plain") : "";
+      if (text) ins = esc(text).replace(/\n/g, "<br>");
       if (ins) {
         e.preventDefault();
         document.execCommand("insertHTML", false, ins);
@@ -3311,6 +3350,7 @@
         fixedTitle: section ? section.title : "",
         hideTags: true,
         titlePlaceholder: "Block title (optional)",
+        mockStatusPicker: true,
         headExtraHtml: isWriteBlock
           ? '<div class="lcn-write-practice-controls">' +
               '<button type="button" class="lcn-btn-sub lcn-btn-sm lcn-write-mode" data-write-act="read" data-mode="read">Read</button>' +
@@ -3386,7 +3426,7 @@
             id: card.id,
             name: mockKey,
             note_date: card.note_date || todayStr(),
-            category: "",
+            category: card.category || "",
             title: section.title,
             html: card.html || ""
           }).catch(function () {});
@@ -3547,6 +3587,7 @@
       '<div class="lcn-note-head">' +
         titleHtml +
         (opt.headExtraHtml || "") +
+        (opt.mockStatusPicker ? mockStatusPickerHtml(card.category || "") : "") +
         (opt.fixedTitle || opt.hideTags ? "" : tagPickHtml(card.category || "")) +
         noteToPythonGrammarButtonHtml(opt) +
         (opt.fixedTitle ? "" : '<button class="lcn-del">✕</button>') +
@@ -3592,6 +3633,19 @@
         node.querySelectorAll(".lcn-tagbtn").forEach(function (x) {
           x.classList.toggle("sel", x.dataset.k === node.dataset.category);
         });
+        save();
+      });
+    }
+    var mockStatusPick = node.querySelector(".lcn-mock-status-pick");
+    if (mockStatusPick) {
+      mockStatusPick.addEventListener("click", function (e) {
+        var b = e.target.closest(".lcn-mock-status-btn");
+        if (!b) return;
+        node.dataset.category = mockStatusCategory(b.dataset.mockStatus || "");
+        node.querySelectorAll(".lcn-mock-status-btn").forEach(function (x) {
+          x.classList.toggle("sel", x === b);
+        });
+        emitMockStatusChange(card, name, node.dataset.category || "", opt.fixedTitle || "");
         save();
       });
     }
@@ -4458,6 +4512,7 @@
         fixedTitle: section ? section.title : "",
         hideTags: true,
         titlePlaceholder: "Block title (optional)",
+        mockStatusPicker: true,
         headExtraHtml: isWriteBlock
           ? '<div class="lcn-write-practice-controls">' +
               '<button type="button" class="lcn-btn-sub lcn-btn-sm lcn-write-mode" data-write-act="read" data-mode="read">Read</button>' +
@@ -4513,7 +4568,7 @@
             id: card.id,
             name: mockKey,
             note_date: card.note_date || todayStr(),
-            category: "",
+            category: card.category || "",
             title: section.title,
             html: card.html || ""
           }).catch(function () {});

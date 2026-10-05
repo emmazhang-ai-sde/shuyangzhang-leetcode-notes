@@ -299,6 +299,16 @@ def get_lc_question_notes(name):
         conn.close()
 
 
+def get_lc_mock_script_statuses():
+    conn = connect()
+    try:
+        return [dict(r) for r in conn.execute(
+            "SELECT id, name, position, category, title FROM lc_note_cards"
+            " WHERE name LIKE 'mock-script:%' ORDER BY name, position, updated_at")]
+    finally:
+        conn.close()
+
+
 def upsert_lc_note_card(payload):
     conn = connect()
     try:

@@ -11,7 +11,7 @@
    #f9f9f9（shared.css body 背景）盖住下面滚上来的内容；z-index 40 ——
    低于 sidebar 的 100（不会盖住侧栏）和弹窗遮罩的 400，够盖住正文卡片。 */
 .lcn-shared-head {
-  text-align: center; padding-top: 44px; padding-bottom: 0;
+  text-align: center; padding-top: 32px; padding-bottom: 0;
   position: sticky; top: 0; z-index: 40; background: #f9f9f9;
 }
 .lcn-shared-head .lcn-title { margin: 0 0 2px; }
@@ -46,7 +46,7 @@
    （2026-08-11 从标题下方单独一行改成标题右侧，标题变成 inline-flex 把
    题名、星标、Notes/Animation 开关横排在一起，整体还是居中）。 */
 .lcn-shared-head .lcn-title {
-  font-size: 29px; letter-spacing: -0.015em;
+  font-size: 27px; letter-spacing: -0.015em;
   display: inline-flex; align-items: center; gap: 12px;
 }
 .lcn-shared-head .lcn-title .lcn-switch { margin: 0; }
@@ -413,8 +413,44 @@ html.lcn-laptop .lcn-cell-ck, html.lcn-laptop .lcn-cell-rh, html.lcn-laptop .lcn
 .lcn-note-card--mock-block {
   background: #fffef7;
 }
+.lcn-note-card--mock-block .lcn-note-title-static {
+  flex: 1 1 auto;
+  width: auto;
+}
 .lcn-note-card--mock-block .lcn-body {
   background: transparent;
+}
+.lcn-mock-status-pick {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: none;
+}
+.lcn-mock-status-btn {
+  border: 2px solid var(--ink);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.lcn-mock-status-empty.sel {
+  background: var(--ink);
+  color: #fff;
+  font-weight: 800;
+}
+.lcn-mock-status-progress.sel {
+  background: rgba(245, 161, 72, 0.32);
+  font-weight: 500;
+}
+.lcn-mock-status-done.sel {
+  background: rgba(55, 180, 112, 0.34);
+  font-weight: 500;
 }
 .lcn-note-card--complexity-overview .lcn-note-head {
   align-items: center;
@@ -446,13 +482,19 @@ html.lcn-laptop .lcn-cell-ck, html.lcn-laptop .lcn-cell-rh, html.lcn-laptop .lcn
   cursor: default;
 }
 .lcn-note-card--write-practice .lcn-note-head {
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: max-content minmax(12px, 1fr) max-content;
+  align-items: center;
   gap: 10px;
 }
 .lcn-note-card--write-practice .lcn-note-title-static {
-  flex: none;
+  grid-column: 1 / -1;
   width: 100%;
+}
+.lcn-note-card--write-practice .lcn-mock-status-pick {
+  grid-column: 3;
+  justify-self: end;
+  margin-left: 0;
 }
 .lcn-note-card--write-practice .lcn-body,
 .lcn-note-card--write-practice .lcn-body * {
@@ -479,9 +521,9 @@ html.lcn-laptop .lcn-cell-ck, html.lcn-laptop .lcn-cell-rh, html.lcn-laptop .lcn
   align-items: center;
   justify-content: flex-start;
   gap: 5px;
-  flex-wrap: wrap;
-  flex: none;
-  width: 100%;
+  flex-wrap: nowrap;
+  grid-column: 1;
+  width: auto;
 }
 .lcn-write-practice-controls .lcn-btn-sub.sel {
   background: var(--ink);
@@ -683,6 +725,7 @@ html.lcn-laptop .lcn-cell-ck, html.lcn-laptop .lcn-cell-rh, html.lcn-laptop .lcn
 .lcn-ck-note-ce h5,
 .lcn-ck-note-ce h6 {
   font-size: inherit !important;
+  font-weight: inherit !important;
   line-height: inherit !important;
   letter-spacing: inherit !important;
   margin: 0 0 4px !important;
